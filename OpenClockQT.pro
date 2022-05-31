@@ -18,13 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-SOURCES += simple.cpp \
-    main.cpp
+SOURCES += \
+    main.cpp \
+    OpenClockWindow.cpp
 
-QT += widgets
+QT += widgets core gui
 
 HEADERS += \
-    simple.h
+    OpenClockWindow.h
 
 DISTFILES += \
     .gitignore
