@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     OpenClockWindow window;
 
     window.resize(350, 250);
-    window.setWindowTitle("Plus Minus");
+    window.setWindowTitle("OpenClockQT");
     window.show();
 
     return app.exec();

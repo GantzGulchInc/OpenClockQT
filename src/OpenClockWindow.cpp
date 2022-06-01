@@ -39,9 +39,9 @@ OpenClockWindow::OpenClockWindow(QWidget * parent) : QMainWindow(parent) {
     QAction *quit2 = toolbar->addAction(QIcon(quitpix), "Quit Application");
     connect(quit2, &QAction::triggered, qApp, &QApplication::quit);
 
-
     edit = new QTextEdit(this);
     edit->setText("0");
+    edit->setTextBackgroundColor(QColor::fromRgb(0x3c, 0xdf, 0xff));
 
     setCentralWidget(edit);
 
@@ -63,8 +63,7 @@ void OpenClockWindow::updateClocks() {
 
     QDateTime dateTime = QDateTime::currentDateTimeUtc();
 
-
-    QString s = dateTime.toString(Qt::DateFormat::ISODate);
+    QString s = dateTime.toString("yyyy-MM-dd hh:mm:ss");
 
     edit->setText(s);
 }
