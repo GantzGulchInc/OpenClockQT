@@ -21,13 +21,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/DigitalClockFace.cpp \
     src/main.cpp \
-    src/OpenClockWindow.cpp
+    src/OpenClockWindow.cpp \
+    src/LedDisplay.cpp
 
 QT += widgets core gui
 
 HEADERS += \
     src/DigitalClockFace.h \
-    src/OpenClockWindow.h
+    src/OpenClockWindow.h \
+    src/LedDisplay.h
 
 DISTFILES += \
     .gitignore

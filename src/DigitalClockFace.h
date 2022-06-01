@@ -8,6 +8,8 @@
 #include <QTextEdit>
 #include <QFont>
 
+#include "LedDisplay.h"
+
 class DigitalClockFace : public QWidget {
 
     Q_OBJECT
@@ -18,9 +20,10 @@ public:
 
 private:
     QFont font;
-    QLabel *title;
-    QLabel *time;
-    QLabel *date;
+
+    LedDisplay *title;
+    LedDisplay *time;
+    LedDisplay *date;
 
 // private slots:
 //    void updateClocks();

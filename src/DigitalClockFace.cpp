@@ -32,17 +32,17 @@ DigitalClockFace::DigitalClockFace(QWidget * parent) : QWidget(parent) {
 
     font.fromString("DSEG14 Modern");
 
-    title = new QLabel("Title");
-    title->setFont(font);
-    title->setStyleSheet( "QLabel { background-color: black; color : green; }");
+    title = new LedDisplay(this, "Title", "Title");
+    // title->setFont(font);
+    // title->setStyleSheet( "QLabel { background-color: black; color : green; }");
 
-    time = new QLabel("Time");
-    time->setFont(font);
-    time->setStyleSheet( "QLabel { background-color: black; color : green; }");
+    time = new LedDisplay(this, "88:88:88", "88:88:88");
+    // time->setFont(font);
+    // time->setStyleSheet( "QLabel { background-color: black; color : green; }");
 
-    date = new QLabel("Date");
-    date->setFont(font);
-    date->setStyleSheet( "QLabel { background-color: black; color : green; }");
+    date = new LedDisplay(this, "8888-88-88", "8888-88-88");
+    // date->setFont(font);
+    // date->setStyleSheet( "QLabel { background-color: black; color : green; }");
 
     vbox->addWidget(title);
     vbox->addWidget(time);
@@ -56,9 +56,9 @@ void DigitalClockFace::update(const QDateTime & dateTime) {
     QString timeString = dateTime.toString("hh:mm:ss");
     QString dateString = dateTime.toString("yyyy-MM-dd");
 
-    title->setText("Title");
-    time->setText(timeString);
-    date->setText(dateString);
+    title->update("Title");
+    time->update(timeString);
+    date->update(dateString);
 
 }
 
