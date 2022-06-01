@@ -19,12 +19,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 SOURCES += \
+    src/DigitalClockFace.cpp \
     src/main.cpp \
     src/OpenClockWindow.cpp
 
 QT += widgets core gui
 
 HEADERS += \
+    src/DigitalClockFace.h \
     src/OpenClockWindow.h
 
 DISTFILES += \

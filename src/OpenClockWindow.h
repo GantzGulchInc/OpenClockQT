@@ -7,6 +7,8 @@
 #include <QLabel>
 #include <QTextEdit>
 
+#include "DigitalClockFace.h"
+
 class OpenClockWindow : public QMainWindow {
 
     Q_OBJECT
@@ -15,7 +17,7 @@ public:
     OpenClockWindow(QWidget *parent = nullptr);
 
 private:
-    QTextEdit *edit;
+    DigitalClockFace * clockFace;
 
 private slots:
     void updateClocks();
