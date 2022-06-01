@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QTextEdit>
+#include <QFont>
 
 class DigitalClockFace : public QWidget {
 
@@ -16,6 +17,7 @@ public:
     void update(const QDateTime & dateTime);
 
 private:
+    QFont font;
     QLabel *title;
     QLabel *time;
     QLabel *date;
