@@ -23,6 +23,7 @@ private:
     int textHeight;
     int textWidth;
     int textAscent;
+    int textXOffset;
     QString text;
     QString shadow;
 

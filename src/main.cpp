@@ -1,4 +1,5 @@
 #include "OpenClockWindow.h"
+#include "Configuration.h"
 
 #include <QApplication>
 #include <QDateTime>
@@ -27,13 +28,17 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
     QDateTime now = QDateTime::currentDateTime();
     QString nowText = now.toString("yyyy/MM/dd hh:mm:ss");
 
-    std::cout << nowText.toStdString() << " [" << toString(type).toStdString() << "] " << msg.toStdString() << std::endl;
+    std::cout << nowText.toStdString() << " [" << toString(type).toStdString() << "] " << context.file << ":" << context.line << " " << msg.toStdString() << std::endl;
 }
 
 
 int main(int argc, char *argv[]) {
 
     qInstallMessageHandler(myMessageHandler);
+
+    Configuration config;
+
+    config.load();
 
     QApplication app(argc, argv);
 

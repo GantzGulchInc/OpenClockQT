@@ -24,7 +24,8 @@ SOURCES += \
     src/OpenClockWindow.cpp \
     src/LedDisplay.cpp \
     src/ClockContainer.cpp \
-    src/ClockFace.cpp
+    src/ClockFace.cpp \
+    src/Configuration.cpp
 
 QT += widgets core gui
 
@@ -33,7 +34,8 @@ HEADERS += \
     src/OpenClockWindow.h \
     src/LedDisplay.h \
     src/ClockContainer.h \
-    src/ClockFace.h
+    src/ClockFace.h \
+    src/Configuration.h
 
 DISTFILES += \
     .gitignore

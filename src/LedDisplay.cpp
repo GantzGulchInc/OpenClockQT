@@ -33,8 +33,10 @@ LedDisplay::LedDisplay(QWidget * parent, const QString & text, const QString & s
     textWidth = r.width();
     textHeight = r.height();
     textAscent = fm.ascent();
+    textXOffset = -1 * r.x();
 
-    qDebug() << "LedDisplay: textWidth: " << textWidth << " textHeight: " << textHeight;
+    qDebug() << "LedDisplay: boundingRect: " << r;
+    qDebug() << "LedDisplay: textWidth: " << textWidth << " textHeight: " << textHeight << " textXOffset: " << textXOffset;
 
     setFixedWidth(textWidth + 10);
     setFixedHeight(textHeight + 10);
@@ -55,13 +57,13 @@ void LedDisplay::paintEvent(QPaintEvent *event)  {
 
     qDebug() << "paintEvent: sWidth: " << sWidth << " sHeight: " << sHeight;
 
-    // painter.fillRect(0, 0, sWidth, sHeight, QColor(0, 0, 0));
+    painter.fillRect(0, 0, sWidth, sHeight, QColor(0x40, 0x40, 0x40));
 
     painter.setPen(QColor(0, 75, 0));
-    painter.drawText(5, textAscent + 5, shadow);
+    painter.drawText(textXOffset + 5, textAscent + 5, shadow);
 
     painter.setPen(Qt::green);
-    painter.drawText(5, textAscent + 5, text);
+    painter.drawText(textXOffset + 5, textAscent + 5, text);
 }
 
 void LedDisplay::update(const QString & text) {
