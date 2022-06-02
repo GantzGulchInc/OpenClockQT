@@ -7,18 +7,22 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <QFont>
+#include <QGridLayout>
 
+#include "ClockFace.h"
 #include "LedDisplay.h"
 
-class DigitalClockFace : public QWidget {
+class DigitalClockFace : public ClockFace {
 
     Q_OBJECT
 
 public:
     DigitalClockFace(QWidget *parent = nullptr);
-    void update(const QDateTime & dateTime);
+    void update(const QDateTime & now);
 
 private:
+
+    QGridLayout * layout;
     QFont font;
 
     LedDisplay *title;

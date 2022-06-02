@@ -1,4 +1,6 @@
 #include "OpenClockWindow.h"
+#include "ClockContainer.h"
+#include "DigitalClockFace.h"
 
 #include <QApplication>
 #include <QWidget>
@@ -17,8 +19,6 @@
 #include <QDateTime>
 
 OpenClockWindow::OpenClockWindow(QWidget * parent) : QMainWindow(parent) {
-
-
 
     QPixmap newpix("/usr/share/icons/gnome/32x32/actions/document-new.png");
     QPixmap openpix("/usr/share/icons/gnome/32x32/actions/document-open.png");
@@ -39,20 +39,24 @@ OpenClockWindow::OpenClockWindow(QWidget * parent) : QMainWindow(parent) {
     QAction *quit2 = toolbar->addAction(QIcon(quitpix), "Quit Application");
     connect(quit2, &QAction::triggered, qApp, &QApplication::quit);
 
-    clockFace = new DigitalClockFace(this);
 
-    // edit = new QTextEdit(this);
-    // edit->setText("0");
-    // edit->setTextBackgroundColor(QColor::fromRgb(0x3c, 0xdf, 0xff));
+    clockContainer = new ClockContainer(this);
+    setCentralWidget(clockContainer);
 
-    setCentralWidget(clockFace);
+    DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer);
+    clockContainer->addClockFace(clockFace1);
+
+    DigitalClockFace * clockFace2 = new DigitalClockFace(clockContainer);
+    clockContainer->addClockFace(clockFace2);
+
+    DigitalClockFace * clockFace3 = new DigitalClockFace(clockContainer);
+    clockContainer->addClockFace(clockFace3);
 
     statusBar()->showMessage("Ready");
 
-
     QTimer * timer = new QTimer(this);
 
-    connect(timer, &QTimer::timeout, this, &OpenClockWindow::updateClocks);
+    connect(timer, &QTimer::timeout, clockContainer, &ClockContainer::updateClocks);
 
     timer->start(1000);
 
@@ -65,5 +69,5 @@ void OpenClockWindow::updateClocks() {
 
     QDateTime dateTime = QDateTime::currentDateTimeUtc();
 
-    clockFace->update(dateTime);
+    clockContainer->updateClocks();
 }

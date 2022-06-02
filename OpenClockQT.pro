@@ -22,14 +22,18 @@ SOURCES += \
     src/DigitalClockFace.cpp \
     src/main.cpp \
     src/OpenClockWindow.cpp \
-    src/LedDisplay.cpp
+    src/LedDisplay.cpp \
+    src/ClockContainer.cpp \
+    src/ClockFace.cpp
 
 QT += widgets core gui
 
 HEADERS += \
     src/DigitalClockFace.h \
     src/OpenClockWindow.h \
-    src/LedDisplay.h
+    src/LedDisplay.h \
+    src/ClockContainer.h \
+    src/ClockFace.h
 
 DISTFILES += \
     .gitignore

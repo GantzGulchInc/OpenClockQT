@@ -34,36 +34,8 @@ LedDisplay::LedDisplay(QWidget * parent, const QString & text, const QString & s
 
     qDebug() << "LedDisplay: textWidth: " << textWidth << " textHeight: " << textHeight;
 
-    resize(textWidth + 10, textHeight + 10);
-
-//    QPalette pal = QPalette();
-
-//    pal.setColor(QPalette::Window, Qt::black);
-
-//    setAutoFillBackground(true);
-//    setPalette(pal);
-
-//    auto * vbox = new QVBoxLayout(this);
-//    vbox->setSpacing(0);
-
-
-//    title = new QLabel("Title");
-//    title->setFont(font);
-//    title->setStyleSheet( "QLabel { background-color: black; color : green; }");
-
-//    time = new QLabel("Time");
-//    time->setFont(font);
-//    time->setStyleSheet( "QLabel { background-color: black; color : green; }");
-
-//    date = new QLabel("Date");
-//    date->setFont(font);
-//    date->setStyleSheet( "QLabel { background-color: black; color : green; }");
-
-//    vbox->addWidget(title);
-//    vbox->addWidget(time);
-//    vbox->addWidget(date);
-
-//    update(QDateTime::currentDateTimeUtc());
+    setFixedWidth(textWidth + 10);
+    setFixedHeight(textHeight + 10);
 }
 
 void LedDisplay::paintEvent(QPaintEvent *event)  {
@@ -79,7 +51,7 @@ void LedDisplay::paintEvent(QPaintEvent *event)  {
 
     qDebug() << "paintEvent: sWidth: " << sWidth << " sHeight: " << sHeight;
 
-    painter.fillRect(0, 0, sWidth, sHeight, QColor(0, 0, 0));
+    // painter.fillRect(0, 0, sWidth, sHeight, QColor(0, 0, 0));
 
     painter.setPen(QColor(0, 75, 0));
     painter.drawText(5, textAscent + 5, shadow);
