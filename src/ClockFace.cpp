@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QDateTime>
 
-ClockFace::ClockFace(QWidget * parent, ClockConfiguration * clockConfiguration) : QWidget(parent), config(clockConfiguration) {
+ClockFace::ClockFace(QWidget * parent, ClockConfiguration * clockConfiguration) : QFrame(parent), config(clockConfiguration) {
 
 }
 

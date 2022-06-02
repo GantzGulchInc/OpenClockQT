@@ -4,8 +4,9 @@
 
 #include <QWidget>
 #include <QDateTime>
+#include <QFrame>
 
-class ClockFace : public QWidget {
+class ClockFace : public QFrame {
 
 public:
     ClockFace(QWidget *parent, ClockConfiguration * config);

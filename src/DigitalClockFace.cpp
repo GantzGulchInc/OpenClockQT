@@ -20,6 +20,11 @@
 
 DigitalClockFace::DigitalClockFace(QWidget * parent, ClockConfiguration * clockConfiguration) : ClockFace(parent, clockConfiguration) {
 
+    setFrameStyle(QFrame::Panel);
+    //setFrameShape(QFrame::Panel | QFrame.Raised);
+    setLineWidth(1);
+
+    setStyleSheet("QFrame { background-color: rgb(0,0,0); border-width: 1; border-radious: 3; border-style: solid; border-color: rgb(255, 255, 255);}");
     timeZone = clockConfiguration->timeZone();
 
     // QPalette pal = QPalette();
