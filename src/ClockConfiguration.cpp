@@ -16,6 +16,7 @@ QString ClockConfiguration::type() {
 
 QTimeZone ClockConfiguration::timeZone() {
     return QTimeZone("America/Detroit");
+    //return QTimeZone("UTC");
 }
 
 QColor ClockConfiguration::background() {
@@ -23,7 +24,7 @@ QColor ClockConfiguration::background() {
 }
 
 QString ClockConfiguration::title() {
-    return "New Title";
+    return "America Detroit";
 }
 
 QFont ClockConfiguration::titleFont() {
@@ -31,8 +32,16 @@ QFont ClockConfiguration::titleFont() {
     return font;
 }
 
+QString ClockConfiguration::titleShadow() {
+    return "~~~~~~~ ~~~~~~~";
+}
+
 QColor ClockConfiguration::titleColor() {
     return QColor(0x00, 0xff, 0x00);
+}
+
+QColor ClockConfiguration::titleShadowColor() {
+    return QColor(0x00, 0x40, 0x00);
 }
 
 QFont ClockConfiguration::timeFont() {

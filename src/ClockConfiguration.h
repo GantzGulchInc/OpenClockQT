@@ -21,6 +21,8 @@ public:
     QString title();
     QFont titleFont();
     QColor titleColor();
+    QColor titleShadowColor();
+    QString titleShadow();
 
     QFont timeFont();
     QColor timeColor();

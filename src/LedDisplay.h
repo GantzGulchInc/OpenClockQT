@@ -13,7 +13,12 @@ class LedDisplay : public QWidget {
     Q_OBJECT
 
 public:
-    LedDisplay(QWidget *parent, QFont font, const QString & text, const QString & shadow);
+    LedDisplay(QWidget *parent,
+               QFont font,
+               QColor textColor,
+               QColor shadowColor,
+               const QString & text,
+               const QString & shadow);
 
     void update(const QString & text);
 
@@ -21,6 +26,8 @@ public:
 
 private:
     QFont font;
+    QColor textColor;
+    QColor shadowColor;
     int textHeight;
     int textWidth;
     int textAscent;

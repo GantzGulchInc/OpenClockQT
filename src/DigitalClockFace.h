@@ -8,6 +8,7 @@
 #include <QTextEdit>
 #include <QFont>
 #include <QGridLayout>
+#include <QTimeZone>
 
 #include "ClockFace.h"
 #include "LedDisplay.h"
@@ -24,6 +25,8 @@ private:
 
     QGridLayout * layout;
     QFont font;
+
+    QTimeZone timeZone;
 
     LedDisplay *title;
     LedDisplay *time;

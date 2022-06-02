@@ -22,8 +22,16 @@
 
 LedDisplay::LedDisplay(QWidget * parent,
                        QFont font,
+                       QColor textColor,
+                       QColor shadowColor,
                        const QString & text,
-                       const QString & shadow) : QWidget(parent), font(font), text(text), shadow(shadow) {
+                       const QString & shadow) :
+    QWidget(parent),
+    font(font),
+    textColor(textColor),
+    shadowColor(shadowColor),
+    text(text),
+    shadow(shadow) {
 
     QFontMetrics fm(font);
 
@@ -57,12 +65,14 @@ void LedDisplay::paintEvent(QPaintEvent *event)  {
 
     // qDebug() << "paintEvent: sWidth: " << sWidth << " sHeight: " << sHeight;
 
-    painter.fillRect(0, 0, sWidth, sHeight, QColor(0x40, 0x40, 0x40));
+    // painter.fillRect(0, 0, sWidth, sHeight, QColor(0x40, 0x40, 0x40));
 
-    painter.setPen(QColor(0, 75, 0));
+    qDebug() << "paintEvent: shadowColor: " << shadowColor;
+    painter.setPen(shadowColor);
     painter.drawText(textXOffset + 5, textAscent + 5, shadow);
 
-    painter.setPen(Qt::green);
+    qDebug() << "paintEvent: textColor: " << shadowColor;
+    painter.setPen(textColor);
     painter.drawText(textXOffset + 5, textAscent + 5, text);
 }
 
