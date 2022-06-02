@@ -28,8 +28,10 @@ LedDisplay::LedDisplay(QWidget * parent, const QString & text, const QString & s
 
     QFontMetrics fm(font);
 
-    textWidth = fm.width(text);
-    textHeight = fm.height();
+    QRect r = fm.boundingRect(text);
+
+    textWidth = r.width();
+    textHeight = r.height();
     textAscent = fm.ascent();
 
     qDebug() << "LedDisplay: textWidth: " << textWidth << " textHeight: " << textHeight;
