@@ -42,6 +42,8 @@ LedDisplay::LedDisplay(QWidget * parent, const QString & text, const QString & s
 
 void LedDisplay::paintEvent(QPaintEvent *event)  {
 
+    Q_UNUSED(event);
+
     qDebug() << "paintEvent: Called: text: " << text;
 
     QPainter painter(this);
