@@ -17,7 +17,7 @@ class DigitalClockFace : public ClockFace {
     Q_OBJECT
 
 public:
-    DigitalClockFace(QWidget *parent = nullptr);
+    DigitalClockFace(QWidget *parent, ClockConfiguration * clockConfiguration);
     void update(const QDateTime & now);
 
 private:

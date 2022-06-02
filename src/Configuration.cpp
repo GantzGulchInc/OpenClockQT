@@ -44,6 +44,8 @@ void Configuration::parseJson(const QByteArray & data) {
     }
 
     qDebug() << "Configuration::parseJson: Read: " << document.toJson();
+
+    document.object();
 }
 
 void Configuration::load() {
@@ -55,3 +57,9 @@ void Configuration::load() {
     parseJson(data);
 
 }
+
+
+
+
+
+

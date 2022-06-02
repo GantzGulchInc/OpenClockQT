@@ -20,11 +20,10 @@
 #include <QPainter>
 #include <QDebug>
 
-LedDisplay::LedDisplay(QWidget * parent, const QString & text, const QString & shadow) : QWidget(parent), text(text), shadow(shadow) {
-
-
-    font.fromString("DSEG14 Modern");
-    font.setPointSize(36);
+LedDisplay::LedDisplay(QWidget * parent,
+                       QFont font,
+                       const QString & text,
+                       const QString & shadow) : QWidget(parent), font(font), text(text), shadow(shadow) {
 
     QFontMetrics fm(font);
 
@@ -35,6 +34,7 @@ LedDisplay::LedDisplay(QWidget * parent, const QString & text, const QString & s
     textAscent = fm.ascent();
     textXOffset = -1 * r.x();
 
+    qDebug() << "LedDisplay: text: " << text;
     qDebug() << "LedDisplay: boundingRect: " << r;
     qDebug() << "LedDisplay: textWidth: " << textWidth << " textHeight: " << textHeight << " textXOffset: " << textXOffset;
 
@@ -55,7 +55,7 @@ void LedDisplay::paintEvent(QPaintEvent *event)  {
     int sWidth = size().width();
     int sHeight = size().height();
 
-    qDebug() << "paintEvent: sWidth: " << sWidth << " sHeight: " << sHeight;
+    // qDebug() << "paintEvent: sWidth: " << sWidth << " sHeight: " << sHeight;
 
     painter.fillRect(0, 0, sWidth, sHeight, QColor(0x40, 0x40, 0x40));
 

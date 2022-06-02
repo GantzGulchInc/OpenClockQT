@@ -1,40 +1,25 @@
 #include "OpenClockWindow.h"
+
 #include "Configuration.h"
+
+#include "ClockLogging.h"
 
 #include <QApplication>
 #include <QDateTime>
 #include <iostream>
-
-QString toString(QtMsgType type) {
-
-    switch(type) {
-    case QtDebugMsg:
-        return "DEBUG";
-    case QtWarningMsg:
-        return "WARN";
-    case QtCriticalMsg:
-        return "CRIT";
-    case QtFatalMsg:
-        return "FATAL";
-    case QtInfoMsg:
-        return "INFO";
-    default:
-        return "UNKN";
-    }
-}
-
-void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
-
-    QDateTime now = QDateTime::currentDateTime();
-    QString nowText = now.toString("yyyy/MM/dd hh:mm:ss");
-
-    std::cout << nowText.toStdString() << " [" << toString(type).toStdString() << "] " << context.file << ":" << context.line << " " << msg.toStdString() << std::endl;
-}
-
+#include <QTimeZone>
+#include <QDebug>
 
 int main(int argc, char *argv[]) {
 
-    qInstallMessageHandler(myMessageHandler);
+    qInstallMessageHandler(openClockMessageHandler);
+
+//    QList<QByteArray> timeZones = QTimeZone::availableTimeZoneIds();
+
+//    for(QByteArray timeZone : timeZones) {
+//        qDebug() << "TimeZone: " << timeZone;
+//    }
+
 
     Configuration config;
 

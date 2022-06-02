@@ -18,7 +18,7 @@
 #include <QVBoxLayout>
 #include <QFont>
 
-DigitalClockFace::DigitalClockFace(QWidget * parent) : ClockFace(parent) {
+DigitalClockFace::DigitalClockFace(QWidget * parent, ClockConfiguration * clockConfiguration) : ClockFace(parent, clockConfiguration) {
 
     // QPalette pal = QPalette();
     // pal.setColor(QPalette::Window, Qt::black);
@@ -31,22 +31,14 @@ DigitalClockFace::DigitalClockFace(QWidget * parent) : ClockFace(parent) {
 
     font.fromString("DSEG14 Modern");
 
-    title = new LedDisplay(this, "Title", "Title");
+    title = new LedDisplay(this, config->titleFont(), config->title(), " ",);
     layout->addWidget(title, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
 
-    // title->setFont(font);
-    // title->setStyleSheet( "QLabel { background-color: black; color : green; }");
-
-    time = new LedDisplay(this, "88:88:88", "88:88:88");
+    time = new LedDisplay(this, config->timeFont(), config->timeFormat(), config->timeShadow());
     layout->addWidget(time, 1, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
 
-    // time->setFont(font);
-    // time->setStyleSheet( "QLabel { background-color: black; color : green; }");
-
-    date = new LedDisplay(this, "8888-88-88", "8888-88-88");
+    date = new LedDisplay(this, config->dateFont(), config->dateFormat(), config->dateShadow());
     layout->addWidget(date, 2, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
-    // date->setFont(font);
-    // date->setStyleSheet( "QLabel { background-color: black; color : green; }");
 
     setLayout(layout);
     update(QDateTime::currentDateTimeUtc());
@@ -57,7 +49,6 @@ void DigitalClockFace::update(const QDateTime & now) {
     QString timeString = now.toString("hh:mm:ss");
     QString dateString = now.toString("yyyy-MM-dd");
 
-    title->update("Title");
     time->update(timeString);
     date->update(dateString);
 

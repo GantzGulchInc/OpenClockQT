@@ -4,12 +4,31 @@
 
 #include <QString>
 #include <QJsonDocument>
+#include <QJsonObject>
+#include <QColor>
+#include <QTimeZone>
+
+
+class DisplayConfiguration  {
+
+public:
+    DisplayConfiguration();
+    void setJson(QJsonObject json);
+    int columns();
+    QColor background();
+
+private:
+    QJsonObject json;
+
+};
 
 class Configuration {
 
 public:
     Configuration();
     void load();
+
+
 
 private:
     QJsonParseError jsonError;

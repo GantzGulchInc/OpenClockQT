@@ -43,13 +43,15 @@ OpenClockWindow::OpenClockWindow(QWidget * parent) : QMainWindow(parent) {
     clockContainer = new ClockContainer(this);
     setCentralWidget(clockContainer);
 
-    DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer);
+    ClockConfiguration * c = new ClockConfiguration();
+
+    DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer, c);
     clockContainer->addClockFace(clockFace1);
 
-    DigitalClockFace * clockFace2 = new DigitalClockFace(clockContainer);
+    DigitalClockFace * clockFace2 = new DigitalClockFace(clockContainer, c);
     clockContainer->addClockFace(clockFace2);
 
-    DigitalClockFace * clockFace3 = new DigitalClockFace(clockContainer);
+    DigitalClockFace * clockFace3 = new DigitalClockFace(clockContainer, c);
     clockContainer->addClockFace(clockFace3);
 
     statusBar()->showMessage("Ready");

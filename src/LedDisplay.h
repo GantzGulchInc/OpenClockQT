@@ -13,7 +13,8 @@ class LedDisplay : public QWidget {
     Q_OBJECT
 
 public:
-    LedDisplay(QWidget *parent, const QString & text, const QString & shadow);
+    LedDisplay(QWidget *parent, QFont font, const QString & text, const QString & shadow);
+
     void update(const QString & text);
 
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
