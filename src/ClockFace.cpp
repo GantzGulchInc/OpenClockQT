@@ -4,7 +4,13 @@
 #include <QDebug>
 #include <QDateTime>
 
-ClockFace::ClockFace(QWidget * parent, ClockConfiguration * clockConfiguration) : QFrame(parent), config(clockConfiguration) {
+ClockFace::ClockFace(QWidget * parent) : QFrame(parent) {
+
+}
+
+void ClockFace::configure(QJsonObject * json) {
+
+    Q_UNUSED(json);
 
 }
 

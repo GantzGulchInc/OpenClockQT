@@ -18,7 +18,7 @@
 #include <QDebug>
 #include <QDateTime>
 
-OpenClockWindow::OpenClockWindow(QWidget * parent) : QMainWindow(parent) {
+OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMainWindow(parent), m_config(config) {
 
     QPixmap newpix("/usr/share/icons/gnome/32x32/actions/document-new.png");
     QPixmap openpix("/usr/share/icons/gnome/32x32/actions/document-open.png");
@@ -43,16 +43,35 @@ OpenClockWindow::OpenClockWindow(QWidget * parent) : QMainWindow(parent) {
     clockContainer = new ClockContainer(this);
     setCentralWidget(clockContainer);
 
-    ClockConfiguration * c = new ClockConfiguration();
+    for(QJsonObject json : m_config.clockConfigs()) {
 
-    DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer, c);
-    clockContainer->addClockFace(clockFace1);
+        qDebug() << "OpenClockWindow: add clock face.";
 
-    DigitalClockFace * clockFace2 = new DigitalClockFace(clockContainer, c);
-    clockContainer->addClockFace(clockFace2);
+        qDebug() << "OpenClockWindow: add clock face: 0";
 
-    DigitalClockFace * clockFace3 = new DigitalClockFace(clockContainer, c);
-    clockContainer->addClockFace(clockFace3);
+        DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer);
+
+        qDebug() << "OpenClockWindow: add clock face: 1";
+
+        clockFace1->configure(json);
+
+        qDebug() << "OpenClockWindow: add clock face: 2";
+
+        clockContainer->addClockFace(clockFace1);
+
+        qDebug() << "OpenClockWindow: add clock face: 3";
+
+    }
+
+
+//    DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer, c);
+//    clockContainer->addClockFace(clockFace1);
+
+//    DigitalClockFace * clockFace2 = new DigitalClockFace(clockContainer, c);
+//    clockContainer->addClockFace(clockFace2);
+
+//    DigitalClockFace * clockFace3 = new DigitalClockFace(clockContainer, c);
+//    clockContainer->addClockFace(clockFace3);
 
     statusBar()->showMessage("Ready");
 

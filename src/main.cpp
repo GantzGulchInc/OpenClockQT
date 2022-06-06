@@ -14,12 +14,6 @@ int main(int argc, char *argv[]) {
 
     qInstallMessageHandler(openClockMessageHandler);
 
-//    QList<QByteArray> timeZones = QTimeZone::availableTimeZoneIds();
-
-//    for(QByteArray timeZone : timeZones) {
-//        qDebug() << "TimeZone: " << timeZone;
-//    }
-
 
     Configuration config;
 
@@ -27,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     QApplication app(argc, argv);
 
-    OpenClockWindow window;
+    OpenClockWindow window(nullptr, config);
 
     window.resize(350, 250);
     window.setWindowTitle("OpenClockQT");

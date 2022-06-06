@@ -1,41 +1,32 @@
 #pragma once
 
-#include "ClockFace.h"
+#include "ConfigurationDisplay.h"
 
 #include <QString>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QColor>
 #include <QTimeZone>
-
-
-class DisplayConfiguration  {
-
-public:
-    DisplayConfiguration();
-    void setJson(QJsonObject json);
-    int columns();
-    QColor background();
-
-private:
-    QJsonObject json;
-
-};
+#include <QList>
 
 class Configuration {
 
 public:
     Configuration();
-    void load();
-
+    bool load();
+    QList<QJsonObject> clockConfigs();
 
 
 private:
     QJsonParseError jsonError;
     QJsonDocument document;
+    QJsonObject jsonObject;
 
-    QByteArray readFile(const QString & path);
-    void parseJson(const QByteArray & data);
+    ConfigurationDisplay configDisplay;
+    QList<QJsonObject> m_clockConfigs;
+
+    bool readFile(const QString & path, QByteArray & bytes);
+    bool parseJson(const QByteArray & data);
 };
 
 

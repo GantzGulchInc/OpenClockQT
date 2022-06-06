@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QTextEdit>
 
+#include "Configuration.h"
 #include "ClockContainer.h"
 
 class OpenClockWindow : public QMainWindow {
@@ -14,10 +15,11 @@ class OpenClockWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    OpenClockWindow(QWidget *parent = nullptr);
+    OpenClockWindow(QWidget *parent, Configuration & cconfig);
 
 private:
 
+    Configuration & m_config;
     ClockContainer * clockContainer;
 
 private slots:

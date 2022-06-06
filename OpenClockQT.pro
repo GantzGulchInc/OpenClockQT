@@ -27,7 +27,8 @@ SOURCES += \
     src/ClockFace.cpp \
     src/Configuration.cpp \
     src/ClockLogging.cpp \
-    src/ClockConfiguration.cpp
+    src/ConfigurationDisplay.cpp \
+    src/ConfigurationJson.cpp
 
 QT += widgets core gui
 
@@ -39,7 +40,8 @@ HEADERS += \
     src/ClockFace.h \
     src/Configuration.h \
     src/ClockLogging.h \
-    src/ClockConfiguration.h
+    src/ConfigurationDisplay.h \
+    src/ConfigurationJson.h
 
 DISTFILES += \
     .gitignore

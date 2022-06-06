@@ -18,19 +18,41 @@ class DigitalClockFace : public ClockFace {
     Q_OBJECT
 
 public:
-    DigitalClockFace(QWidget *parent, ClockConfiguration * clockConfiguration);
+    DigitalClockFace(QWidget *parent);
+    void configure(QJsonObject & json);
     void update(const QDateTime & now);
 
 private:
+    QString m_type{"Led"};
+    QTimeZone m_timeZone{"America/Detroit"};
 
-    QGridLayout * layout;
-    QFont font;
+    QColor m_background{"#000000"};
 
-    QTimeZone timeZone;
+    QString m_title{"America Detroit"};
+    QFont m_titleFont{"DSEG14 Modern", 28};
+    QColor m_titleColor{"#ffffff"};
+    QColor m_titleShadowColor{"#404040"};
+    QString m_titleShadow{"~~~~~~~ ~~~~~~~"};
 
-    LedDisplay *title;
-    LedDisplay *time;
-    LedDisplay *date;
+    QFont m_timeFont{"DSEG14 Modern", 28};
+    QColor m_timeColor{"#00D000"};
+    QColor m_timeShadowColor{"#004000"};
+    QString m_timeFormat{"hh:MM:ss"};
+    QString m_timeShadow{"~~:~~:~~"};
+
+    QFont m_dateFont{"DSEG14 Modern", 28};
+    QColor m_dateColor{"#00C000"};
+    QColor m_dateShadowColor{"#004000"};
+    QString m_dateFormat{"yyyy-mm-dd"};
+    QString m_dateShadow{"~~~~-~~-~~"};
+
+    QGridLayout * m_layout;
+
+    LedDisplay *m_titleLedDisplay;
+    LedDisplay *m_timeLedDisplay;
+    LedDisplay *m_dateLedDisplay;
+
+    void updateUI();
 
 // private slots:
 //    void updateClocks();
