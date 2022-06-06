@@ -23,14 +23,14 @@
 
 ClockFaceLed::ClockFaceLed(QWidget * parent) : ClockFace(parent) {
 
-    qDebug() << "DigitalClockFace:ctor: 0";
+    qDebug() << "ClockFaceLed:ctor: 0";
 
     setFrameStyle(QFrame::Panel);
     setLineWidth(1);
 
     setStyleSheet("QFrame { background-color: rgb(0,0,0); border-width: 1; border-radius: 15; border-style: solid; border-color: rgb(255, 255, 255);}");
 
-    qDebug() << "DigitalClockFace:ctor: 1";
+    qDebug() << "ClockFaceLed:ctor: 1";
 
     m_layout = new QGridLayout(this);
     m_layout->setVerticalSpacing(2);
@@ -47,17 +47,18 @@ ClockFaceLed::ClockFaceLed(QWidget * parent) : ClockFace(parent) {
 
     // update(QDateTime::currentDateTimeUtc());
 
-    qDebug() << "DigitalClockFace:ctor: 2";
+    qDebug() << "ClockFaceLed:ctor: 2";
 
     setLayout(m_layout);
 
     updateUI();
 
-    qDebug() << "DigitalClockFace:ctor: 3";
+    qDebug() << "ClockFaceLed:ctor: 3";
 }
 
 void ClockFaceLed::configure(QJsonObject & json) {
 
+    qDebug() << "configure: json: " << json;
 
     QJsonValue paramValue = json.value("parameters");
 
@@ -126,10 +127,12 @@ void ClockFaceLed::configure(QJsonObject & json) {
         } else if( key == "dateShadow" ) {
             ConfigurationJson::getString(value, m_dateShadow);
         } else {
-            qDebug() << "DigitalClockFace::configure: Unknown configuration key: " << key;
+            qDebug() << "ClockFaceLed::configure: Unknown configuration key: " << key;
         }
 
     }
+
+    qDebug() << "configure: title: " << m_title;
 
     m_titleFont.setFamily(m_titleFontFamily);
     m_titleFont.setPixelSize(m_titleFontHeight);
@@ -160,7 +163,7 @@ void ClockFaceLed::updateUI() {
 
 void ClockFaceLed::update(const QDateTime & now) {
 
-    qDebug() << "DigitalClockFace: update: now:";
+    qDebug() << "ClockFaceLed: update: now:";
 
     QDateTime local = now.toTimeZone(m_timeZone);
 

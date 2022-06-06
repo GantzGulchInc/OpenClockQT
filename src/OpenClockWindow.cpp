@@ -1,6 +1,7 @@
 #include "OpenClockWindow.h"
 #include "ClockContainer.h"
 #include "ClockFaceLed.h"
+#include "ConfigurationJson.h"
 
 #include <QApplication>
 #include <QWidget>
@@ -43,35 +44,38 @@ OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMa
     clockContainer = new ClockContainer(this);
     setCentralWidget(clockContainer);
 
+    ClockFace * clockFace = nullptr;
+    QString type{"Led"};
+
     for(QJsonObject json : m_config.clockConfigs()) {
 
-        qDebug() << "OpenClockWindow: add clock face.";
 
-        qDebug() << "OpenClockWindow: add clock face: 0";
+        ConfigurationJson::getString(json["type"], type);
 
-        ClockFaceLed * clockFace1 = new ClockFaceLed(clockContainer);
+        qDebug() << "OpenClockWindow::ctor: type: " << type;
 
-        qDebug() << "OpenClockWindow: add clock face: 1";
+        if( type == "Led" ) {
+            clockFace = new ClockFaceLed(clockContainer);
+        } else {
+            qWarning() << "Unknown clock face type: " << type;
+        }
 
-        clockFace1->configure(json);
+        if( clockFace != nullptr ) {
 
-        qDebug() << "OpenClockWindow: add clock face: 2";
+            qDebug() << "OpenClockWindow: add clock face: 1";
 
-        clockContainer->addClockFace(clockFace1);
+            clockFace->configure(json);
 
-        qDebug() << "OpenClockWindow: add clock face: 3";
+            qDebug() << "OpenClockWindow: add clock face: 2";
 
+            clockContainer->addClockFace(clockFace);
+        }
+
+        clockFace = nullptr;
+        type = "Led";
     }
 
 
-//    DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer, c);
-//    clockContainer->addClockFace(clockFace1);
-
-//    DigitalClockFace * clockFace2 = new DigitalClockFace(clockContainer, c);
-//    clockContainer->addClockFace(clockFace2);
-
-//    DigitalClockFace * clockFace3 = new DigitalClockFace(clockContainer, c);
-//    clockContainer->addClockFace(clockFace3);
 
     statusBar()->showMessage("Ready");
 

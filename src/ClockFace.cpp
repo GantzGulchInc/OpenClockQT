@@ -8,7 +8,7 @@ ClockFace::ClockFace(QWidget * parent) : QFrame(parent) {
 
 }
 
-void ClockFace::configure(QJsonObject * json) {
+void ClockFace::configure(QJsonObject & json) {
 
     Q_UNUSED(json);
 

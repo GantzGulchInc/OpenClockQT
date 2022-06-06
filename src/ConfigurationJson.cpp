@@ -7,6 +7,20 @@
 #include <QColor>
 #include <QFont>
 
+
+QJsonObject ConfigurationJson::getObject(const QJsonObject & obj, QString key) {
+
+    QJsonValue value = obj[key];
+
+    if( value.isObject() ) {
+        return value.toObject();
+    }
+
+    return QJsonObject();
+}
+
+
+
 QString ConfigurationJson::getString(const QJsonObject & obj,  QString key, QString defaultValue) {
 
     QJsonValue value = obj[key];
@@ -94,6 +108,13 @@ QFont ConfigurationJson::getFont(const QJsonObject & obj, QString fontNameKey, Q
 
 
 
+void ConfigurationJson::getObject(const QJsonValue & val, QJsonObject & objectValue) {
+
+    if( val.isObject() ) {
+        objectValue = val.toObject();
+    }
+
+}
 
 
 

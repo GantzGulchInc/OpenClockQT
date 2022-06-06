@@ -10,6 +10,9 @@
 class ConfigurationJson {
 
 public:
+
+    static QJsonObject getObject(const QJsonObject & obj, QString key);
+
     static QString getString(const QJsonObject & obj,  QString key, QString defaultValue);
 
     static int getInt(const QJsonObject & obj, QString key, int defaultValue);
@@ -23,6 +26,7 @@ public:
     static QFont getFont(const QJsonObject & obj, QString fontNameKey,  QString fontHeightKey, QString fontBoldKey, QString fontItalicKey, QFont defaultFont);
 
 
+    static void getObject(const QJsonValue & val, QJsonObject & objectValue);
 
     static void getString(const QJsonValue & val,  QString & stringValue);
 
