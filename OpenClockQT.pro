@@ -19,7 +19,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 SOURCES += \
-    src/DigitalClockFace.cpp \
     src/main.cpp \
     src/OpenClockWindow.cpp \
     src/LedDisplay.cpp \
@@ -28,12 +27,12 @@ SOURCES += \
     src/Configuration.cpp \
     src/ClockLogging.cpp \
     src/ConfigurationDisplay.cpp \
-    src/ConfigurationJson.cpp
+    src/ConfigurationJson.cpp \
+    src/ClockFaceLed.cpp
 
 QT += widgets core gui
 
 HEADERS += \
-    src/DigitalClockFace.h \
     src/OpenClockWindow.h \
     src/LedDisplay.h \
     src/ClockContainer.h \
@@ -41,7 +40,8 @@ HEADERS += \
     src/Configuration.h \
     src/ClockLogging.h \
     src/ConfigurationDisplay.h \
-    src/ConfigurationJson.h
+    src/ConfigurationJson.h \
+    src/ClockFaceLed.h
 
 DISTFILES += \
     .gitignore

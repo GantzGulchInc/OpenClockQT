@@ -29,7 +29,7 @@ void openClockMessageHandler(QtMsgType type, const QMessageLogContext &context, 
     QDateTime now = QDateTime::currentDateTime();
     QString nowText = now.toString("yyyy/MM/dd hh:mm:ss");
 
-    const char * f = context.file != nullptr ? context.file : "none";
+    const char * f = context.file != nullptr ? context.file : "<none>";
 
     std::cout << nowText.toStdString() << " [" << toString(type).toStdString() << "] (" << f << ":" << context.line << ") " << msg.toStdString() << std::endl;
 

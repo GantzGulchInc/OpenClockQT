@@ -21,6 +21,22 @@ public:
     static QTimeZone getTimeZone(const QJsonObject & obj,  QString key, QTimeZone defaultValue);
 
     static QFont getFont(const QJsonObject & obj, QString fontNameKey,  QString fontHeightKey, QString fontBoldKey, QString fontItalicKey, QFont defaultFont);
+
+
+
+    static void getString(const QJsonValue & val,  QString & stringValue);
+
+    static void getInt(const QJsonValue & val, int * intValue);
+
+    static void getBool(const QJsonValue & val, bool * boolValue);
+
+    static void getColor(const QJsonValue & val, QColor & colorValue);
+
+    static void getTimeZone(const QJsonValue & val,  QTimeZone & timezoneValue);
+
+    // static QFont getFont(const QJsonObject & obj, QString fontNameKey,  QString fontHeightKey, QString fontBoldKey, QString fontItalicKey, QFont defaultFont);
+
+
 };
 
 

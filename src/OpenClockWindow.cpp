@@ -1,6 +1,6 @@
 #include "OpenClockWindow.h"
 #include "ClockContainer.h"
-#include "DigitalClockFace.h"
+#include "ClockFaceLed.h"
 
 #include <QApplication>
 #include <QWidget>
@@ -49,7 +49,7 @@ OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMa
 
         qDebug() << "OpenClockWindow: add clock face: 0";
 
-        DigitalClockFace * clockFace1 = new DigitalClockFace(clockContainer);
+        ClockFaceLed * clockFace1 = new ClockFaceLed(clockContainer);
 
         qDebug() << "OpenClockWindow: add clock face: 1";
 

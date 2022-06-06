@@ -87,3 +87,65 @@ QFont ConfigurationJson::getFont(const QJsonObject & obj, QString fontNameKey, Q
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+void ConfigurationJson::getString(const QJsonValue & val,  QString & stringValue) {
+
+    if( val.isString() ) {
+
+        QString s = val.toString();
+
+        if(s.size() > 0 ) {
+            stringValue = s;
+        }
+    }
+
+}
+
+void ConfigurationJson::getInt(const QJsonValue & val, int * intValue) {
+    if( val.isDouble() ) {
+        *intValue = val.toInt();
+    }
+}
+
+void ConfigurationJson::getBool(const QJsonValue & val, bool * boolValue) {
+    if( val.isBool() ) {
+        *boolValue = val.toBool();
+    }
+}
+
+void ConfigurationJson::getColor(const QJsonValue & val, QColor & colorValue) {
+
+    QString colorHex;
+
+    getString(val, colorHex);
+
+    QColor c(colorHex);
+
+    if( c.isValid() ) {
+        colorValue = c;
+    }
+}
+
+void ConfigurationJson::getTimeZone(const QJsonValue & val,  QTimeZone & timezoneValue) {
+
+    QString timezoneText;
+
+    getString(val, timezoneText);
+
+    QTimeZone tz( timezoneText.toUtf8());
+
+    if( tz.isValid() ) {
+        timezoneValue = tz;
+    }
+}

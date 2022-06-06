@@ -13,12 +13,12 @@
 #include "ClockFace.h"
 #include "LedDisplay.h"
 
-class DigitalClockFace : public ClockFace {
+class ClockFaceLed : public ClockFace {
 
     Q_OBJECT
 
 public:
-    DigitalClockFace(QWidget *parent);
+    ClockFaceLed(QWidget *parent);
     void configure(QJsonObject & json);
     void update(const QDateTime & now);
 
@@ -29,18 +29,31 @@ private:
     QColor m_background{"#000000"};
 
     QString m_title{"America Detroit"};
-    QFont m_titleFont{"DSEG14 Modern", 28};
+    QString m_titleFontFamily{"DSEG14 Modern"};
+    int m_titleFontHeight{28};
+    bool m_titleFontBold{false};
+    bool m_titleFontItalic{false};
+    QFont m_titleFont{m_titleFontFamily, m_titleFontHeight};
     QColor m_titleColor{"#ffffff"};
     QColor m_titleShadowColor{"#404040"};
     QString m_titleShadow{"~~~~~~~ ~~~~~~~"};
 
-    QFont m_timeFont{"DSEG14 Modern", 28};
+    QString m_timeFontFamily{"DSEG14 Modern"};
+    int m_timeFontHeight{28};
+    bool m_timeFontBold{false};
+    bool m_timeFontItalic{false};
+    QFont m_timeFont{m_titleFontFamily, m_titleFontHeight};
     QColor m_timeColor{"#00D000"};
     QColor m_timeShadowColor{"#004000"};
     QString m_timeFormat{"hh:MM:ss"};
     QString m_timeShadow{"~~:~~:~~"};
 
-    QFont m_dateFont{"DSEG14 Modern", 28};
+
+    QString m_dateFontFamily{"DSEG14 Modern"};
+    int m_dateFontHeight{28};
+    bool m_dateFontBold{false};
+    bool m_dateFontItalic{false};
+    QFont m_dateFont{m_titleFontFamily, m_titleFontHeight};
     QColor m_dateColor{"#00C000"};
     QColor m_dateShadowColor{"#004000"};
     QString m_dateFormat{"yyyy-mm-dd"};
