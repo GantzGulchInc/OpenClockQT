@@ -46,7 +46,6 @@ void ClockContainer::addClockFace(ClockFace * clockFace) {
     clockList.append(clockFace);
 
     layout->addWidget(clockFace, currentRow, currentColumn, 1, 1, Qt::AlignVCenter);
-    //layout->addWidget(clockFace, currentRow, currentColumn, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
 
     currentColumn += 1;
 

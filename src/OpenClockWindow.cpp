@@ -46,11 +46,12 @@ OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMa
 
     ClockFace * clockFace = nullptr;
     QString type{"Led"};
+    QString defaultType{"Led"};
 
     for(QJsonObject json : m_config.clockConfigs()) {
 
 
-        ConfigurationJson::getString(json["type"], type);
+        ConfigurationJson::getString(json["type"], type, defaultType);
 
         qDebug() << "OpenClockWindow::ctor: type: " << type;
 

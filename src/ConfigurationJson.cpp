@@ -8,6 +8,8 @@
 #include <QFont>
 
 
+static QString EMPTY_STRING{""};
+
 QJsonObject ConfigurationJson::getObject(const QJsonObject & obj, QString key) {
 
     QJsonValue value = obj[key];
@@ -120,7 +122,7 @@ void ConfigurationJson::getObject(const QJsonValue & val, QJsonObject & objectVa
 
 
 
-void ConfigurationJson::getString(const QJsonValue & val,  QString & stringValue) {
+void ConfigurationJson::getString(const QJsonValue & val,  QString & stringValue, QString & defaultValue) {
 
     if( val.isString() ) {
 
@@ -128,45 +130,61 @@ void ConfigurationJson::getString(const QJsonValue & val,  QString & stringValue
 
         if(s.size() > 0 ) {
             stringValue = s;
+
+            return;
         }
     }
 
+    stringValue = defaultValue;
 }
 
-void ConfigurationJson::getInt(const QJsonValue & val, int * intValue) {
+void ConfigurationJson::getInt(const QJsonValue & val, int * intValue, int defaultValue) {
+
     if( val.isDouble() ) {
         *intValue = val.toInt();
+        return;
     }
+
+    *intValue = defaultValue;
 }
 
-void ConfigurationJson::getBool(const QJsonValue & val, bool * boolValue) {
+void ConfigurationJson::getBool(const QJsonValue & val, bool * boolValue, bool defaultValue) {
     if( val.isBool() ) {
         *boolValue = val.toBool();
+        return;
     }
+
+    *boolValue = defaultValue;
 }
 
-void ConfigurationJson::getColor(const QJsonValue & val, QColor & colorValue) {
+void ConfigurationJson::getColor(const QJsonValue & val, QColor & colorValue, QColor & defaultValue) {
 
     QString colorHex;
 
-    getString(val, colorHex);
+    getString(val, colorHex, EMPTY_STRING);
 
     QColor c(colorHex);
 
     if( c.isValid() ) {
         colorValue = c;
+        return;
     }
+
+    colorValue = defaultValue;
 }
 
-void ConfigurationJson::getTimeZone(const QJsonValue & val,  QTimeZone & timezoneValue) {
+void ConfigurationJson::getTimeZone(const QJsonValue & val,  QTimeZone & timezoneValue, QTimeZone & defaultValue) {
 
     QString timezoneText;
 
-    getString(val, timezoneText);
+    getString(val, timezoneText, EMPTY_STRING);
 
     QTimeZone tz( timezoneText.toUtf8());
 
     if( tz.isValid() ) {
         timezoneValue = tz;
+        return;
     }
+
+    timezoneValue = defaultValue;
 }

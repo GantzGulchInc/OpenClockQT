@@ -22,6 +22,16 @@ public:
     void configure(QJsonObject & json);
     void update(const QDateTime & now);
 
+    static QString DEFAULT_TITLE;
+    static QTimeZone DEFAULT_TIMEZONE;
+    static QString DEFAULT_FONT_FAMILY;
+    static int DEFAULT_FONT_HEIGHT;
+    static QColor DEFAULT_COLOR;
+    static QColor DEFAULT_SHADOW_COLOR;
+    static QString DEFAULT_TIME_FORMAT;
+    static QString DEFAULT_DATE_FORMAT;
+    static QColor DEFAULT_BACKGROUND;
+
 private:
     QString m_type{"Led"};
     QTimeZone m_timeZone{"America/Detroit"};

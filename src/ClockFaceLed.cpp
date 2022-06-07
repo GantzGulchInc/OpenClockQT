@@ -21,6 +21,19 @@
 #include <QFont>
 #include <QJsonObject>
 
+QString ClockFaceLed::DEFAULT_TITLE{"Detroic"};
+QTimeZone ClockFaceLed::DEFAULT_TIMEZONE{"America/Detroit"};
+QString ClockFaceLed::DEFAULT_FONT_FAMILY{"DSEG14 Modern"};
+int ClockFaceLed::DEFAULT_FONT_HEIGHT{28};
+QColor ClockFaceLed::DEFAULT_COLOR{"#ffffff"};
+QColor ClockFaceLed::DEFAULT_SHADOW_COLOR{"#909090"};
+QString ClockFaceLed::DEFAULT_TIME_FORMAT{"HH:mm:ss"};
+QString ClockFaceLed::DEFAULT_DATE_FORMAT{"yyyy-mm-dd"};
+QColor ClockFaceLed::DEFAULT_BACKGROUND{"#000000"};
+
+
+static QString EMPTY_STRING{""};
+
 ClockFaceLed::ClockFaceLed(QWidget * parent) : ClockFace(parent) {
 
     qDebug() << "ClockFaceLed:ctor: 0";
@@ -75,57 +88,57 @@ void ClockFaceLed::configure(QJsonObject & json) {
         qDebug() << "configure: key: " << key;
 
         if( key == "background" ) {
-            ConfigurationJson::getColor(value, m_background);
+            ConfigurationJson::getColor(value, m_background, DEFAULT_BACKGROUND);
+
         } else if( key == "title") {
-            ConfigurationJson::getString(value, m_title);
+            ConfigurationJson::getString(value, m_title, DEFAULT_TITLE);
         } else if( key == "titleFont" ) {
-            ConfigurationJson::getString(value, m_titleFontFamily);
+            ConfigurationJson::getString(value, m_titleFontFamily, DEFAULT_FONT_FAMILY);
         } else if( key == "titleHeight" ) {
-            ConfigurationJson::getInt(value, &m_titleFontHeight);
+            ConfigurationJson::getInt(value, &m_titleFontHeight, DEFAULT_FONT_HEIGHT);
         } else if( key == "titleBold" ) {
-            ConfigurationJson::getBool(value, &m_titleFontBold);
+            ConfigurationJson::getBool(value, &m_titleFontBold, false);
         } else if( key == "titleItalic" ) {
-            ConfigurationJson::getBool(value, &m_titleFontItalic);
+            ConfigurationJson::getBool(value, &m_titleFontItalic, false);
         } else if( key == "titleColor" ) {
-            ConfigurationJson::getColor(value, m_titleColor);
-        } else if( key == "titleColor" ) {
-            ConfigurationJson::getColor(value, m_titleColor);
+            ConfigurationJson::getColor(value, m_titleColor, DEFAULT_COLOR);
         } else if( key == "titleShadowColor" ) {
-            ConfigurationJson::getColor(value, m_titleShadowColor);
+            ConfigurationJson::getColor(value, m_titleShadowColor, DEFAULT_SHADOW_COLOR);
         } else if( key == "titleShadow") {
-            ConfigurationJson::getString(value, m_titleShadow);
+            ConfigurationJson::getString(value, m_titleShadow, EMPTY_STRING);
+
         } else if( key == "timeFont" ) {
-            ConfigurationJson::getString(value, m_timeFontFamily);
+            ConfigurationJson::getString(value, m_timeFontFamily, DEFAULT_FONT_FAMILY);
         } else if( key == "timeHeight" ) {
-            ConfigurationJson::getInt(value, &m_timeFontHeight);
+            ConfigurationJson::getInt(value, &m_timeFontHeight, DEFAULT_FONT_HEIGHT);
         } else if( key == "timeBold" ) {
-            ConfigurationJson::getBool(value, &m_timeFontBold);
+            ConfigurationJson::getBool(value, &m_timeFontBold, false);
         } else if( key == "timeItalic" ) {
-            ConfigurationJson::getBool(value, &m_timeFontItalic);
+            ConfigurationJson::getBool(value, &m_timeFontItalic, false);
         } else if( key == "timeColor" ) {
-            ConfigurationJson::getColor(value, m_timeColor);
+            ConfigurationJson::getColor(value, m_timeColor, DEFAULT_COLOR);
         } else if( key == "timeShadowColor" ) {
-            ConfigurationJson::getColor(value, m_timeShadowColor);
+            ConfigurationJson::getColor(value, m_timeShadowColor, DEFAULT_SHADOW_COLOR);
         } else if( key == "timeFormat" ) {
-            ConfigurationJson::getString(value, m_timeFormat);
+            ConfigurationJson::getString(value, m_timeFormat, DEFAULT_TIME_FORMAT);
         } else if( key == "timeShadow" ) {
-            ConfigurationJson::getString(value, m_timeShadow);
+            ConfigurationJson::getString(value, m_timeShadow, EMPTY_STRING);
         } else if( key == "dateFont" ) {
-            ConfigurationJson::getString(value, m_dateFontFamily);
+            ConfigurationJson::getString(value, m_dateFontFamily, DEFAULT_FONT_FAMILY);
         } else if( key == "dateHeight" ) {
-            ConfigurationJson::getInt(value, &m_dateFontHeight);
+            ConfigurationJson::getInt(value, &m_dateFontHeight, DEFAULT_FONT_HEIGHT);
         } else if( key == "dateBold" ) {
-            ConfigurationJson::getBool(value, &m_dateFontBold);
+            ConfigurationJson::getBool(value, &m_dateFontBold, false);
         } else if( key == "dateItalic" ) {
-            ConfigurationJson::getBool(value, &m_dateFontItalic);
+            ConfigurationJson::getBool(value, &m_dateFontItalic, false);
         } else if( key == "dateColor" ) {
-            ConfigurationJson::getColor(value, m_dateColor);
+            ConfigurationJson::getColor(value, m_dateColor, DEFAULT_COLOR);
         } else if( key == "dateShadowColor" ) {
-            ConfigurationJson::getColor(value, m_dateShadowColor);
+            ConfigurationJson::getColor(value, m_dateShadowColor, DEFAULT_SHADOW_COLOR);
         } else if( key == "dateFormat" ) {
-            ConfigurationJson::getString(value, m_dateFormat);
+            ConfigurationJson::getString(value, m_dateFormat, DEFAULT_DATE_FORMAT);
         } else if( key == "dateShadow" ) {
-            ConfigurationJson::getString(value, m_dateShadow);
+            ConfigurationJson::getString(value, m_dateShadow, EMPTY_STRING);
         } else {
             qDebug() << "ClockFaceLed::configure: Unknown configuration key: " << key;
         }
