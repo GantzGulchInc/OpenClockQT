@@ -4,7 +4,7 @@
 #include <iostream>
 #include <QTimeZone>
 #include <QDebug>
-#include <QtMsgHandler>
+#include <QtMessageHandler>
 
 QString toString(QtMsgType type) {
 
