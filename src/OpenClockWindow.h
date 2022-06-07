@@ -1,14 +1,11 @@
 #pragma once
 
-#include <QWidget>
-#include <QMainWindow>
-#include <QApplication>
-#include <QPushButton>
-#include <QLabel>
-#include <QTextEdit>
-
 #include "Configuration.h"
 #include "ClockContainer.h"
+
+#include <QWidget>
+#include <QMainWindow>
+
 
 class OpenClockWindow : public QMainWindow {
 

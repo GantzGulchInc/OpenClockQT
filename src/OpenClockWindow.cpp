@@ -5,10 +5,7 @@
 
 #include <QApplication>
 #include <QWidget>
-#include <QFrame>
 #include <QGridLayout>
-#include <QPushButton>
-#include <QLabel>
 #include <QMenu>
 #include <QMenuBar>
 #include <QStatusBar>

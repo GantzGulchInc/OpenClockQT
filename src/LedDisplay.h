@@ -1,11 +1,6 @@
 #pragma once
 
 #include <QWidget>
-#include <QMainWindow>
-#include <QApplication>
-#include <QPushButton>
-#include <QLabel>
-#include <QTextEdit>
 #include <QFont>
 
 class LedDisplay : public QWidget {

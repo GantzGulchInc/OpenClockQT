@@ -3,14 +3,7 @@
 #include "ClockFace.h"
 
 #include <QWidget>
-#include <QMainWindow>
-#include <QApplication>
-#include <QPushButton>
-#include <QLabel>
-#include <QTextEdit>
-#include <QFont>
 #include <QVector>
-#include <QVBoxLayout>
 #include <QGridLayout>
 
 class ClockContainer : public QWidget {
@@ -20,7 +13,6 @@ class ClockContainer : public QWidget {
 public:
     ClockContainer(QWidget *parent = nullptr);
     void addClockFace(ClockFace * clockFace);
-
     void updateClocks();
 
 private:

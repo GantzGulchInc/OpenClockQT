@@ -36,14 +36,10 @@ static QString EMPTY_STRING{""};
 
 ClockFaceLed::ClockFaceLed(QWidget * parent) : ClockFace(parent) {
 
-    qDebug() << "ClockFaceLed:ctor: 0";
-
     setFrameStyle(QFrame::Panel);
     setLineWidth(1);
 
     setStyleSheet("QFrame { background-color: rgb(0,0,0); border-width: 1; border-radius: 15; border-style: solid; border-color: rgb(255, 255, 255);}");
-
-    qDebug() << "ClockFaceLed:ctor: 1";
 
     m_layout = new QGridLayout(this);
     m_layout->setVerticalSpacing(2);
@@ -58,20 +54,12 @@ ClockFaceLed::ClockFaceLed(QWidget * parent) : ClockFace(parent) {
     m_dateLedDisplay = new LedDisplay(this);
     m_layout->addWidget(m_dateLedDisplay, 2, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
 
-    // update(QDateTime::currentDateTimeUtc());
-
-    qDebug() << "ClockFaceLed:ctor: 2";
-
     setLayout(m_layout);
 
     updateUI();
-
-    qDebug() << "ClockFaceLed:ctor: 3";
 }
 
 void ClockFaceLed::configure(QJsonObject & json) {
-
-    qDebug() << "configure: json: " << json;
 
     QJsonValue paramValue = json.value("parameters");
 
@@ -145,8 +133,6 @@ void ClockFaceLed::configure(QJsonObject & json) {
 
     }
 
-    qDebug() << "configure: title: " << m_title;
-
     m_titleFont.setFamily(m_titleFontFamily);
     m_titleFont.setPixelSize(m_titleFontHeight);
     m_titleFont.setBold(m_titleFontBold);
@@ -175,8 +161,6 @@ void ClockFaceLed::updateUI() {
 }
 
 void ClockFaceLed::update(const QDateTime & now) {
-
-    qDebug() << "ClockFaceLed: update: now:";
 
     QDateTime local = now.toTimeZone(m_timeZone);
 

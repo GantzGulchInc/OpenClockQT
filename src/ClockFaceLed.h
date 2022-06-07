@@ -1,17 +1,16 @@
 #pragma once
 
-#include <QWidget>
-#include <QMainWindow>
-#include <QApplication>
-#include <QPushButton>
-#include <QLabel>
-#include <QTextEdit>
-#include <QFont>
-#include <QGridLayout>
-#include <QTimeZone>
-
 #include "ClockFace.h"
 #include "LedDisplay.h"
+
+#include <QWidget>
+#include <QJsonObject>
+#include <QDateTime>
+#include <QColor>
+#include <QFont>
+#include <QTimeZone>
+#include <QGridLayout>
+
 
 class ClockFaceLed : public ClockFace {
 

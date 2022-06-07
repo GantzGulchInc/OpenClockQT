@@ -20,6 +20,7 @@ void ConfigurationDisplay::update(QJsonObject & json) {
 
     this->m_columns = cols;
 
+
     qDebug() << "ConfigurationDisplay: update: called 1";
 
     m_background = ConfigurationJson::getColor(json, "background", QColor(0,0,0));

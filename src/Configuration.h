@@ -5,8 +5,6 @@
 #include <QString>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QColor>
-#include <QTimeZone>
 #include <QList>
 
 class Configuration {
