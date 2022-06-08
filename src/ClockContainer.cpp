@@ -8,15 +8,15 @@
 
 ClockContainer::ClockContainer(QWidget * parent) : QWidget(parent) {
 
-    layout = new QGridLayout(this);
-    layout->setVerticalSpacing(5);
-    layout->setHorizontalSpacing(5);
-    layout->setColumnStretch(0, 1);
-    layout->setColumnStretch(1, 1);
+    m_layout = new QGridLayout(this);
+    m_layout->setVerticalSpacing(5);
+    m_layout->setHorizontalSpacing(5);
+    m_layout->setColumnStretch(0, 1);
+    m_layout->setColumnStretch(1, 1);
 
-    columnCount = 2;
-    currentRow = 0;
-    currentColumn = 0;
+    m_columnCount = 2;
+    m_currentRow = 0;
+    m_currentColumn = 0;
 
     setAutoFillBackground(true);
 
@@ -26,20 +26,20 @@ ClockContainer::ClockContainer(QWidget * parent) : QWidget(parent) {
 
     setPalette(p);
 
-    setLayout(layout);
+    setLayout(m_layout);
 }
 
 void ClockContainer::addClockFace(ClockFace * clockFace) {
 
-    clockList.append(clockFace);
+    m_clockList.append(clockFace);
 
-    layout->addWidget(clockFace, currentRow, currentColumn, 1, 1, Qt::AlignVCenter);
+    m_layout->addWidget(clockFace, m_currentRow, m_currentColumn, 1, 1, Qt::AlignVCenter);
 
-    currentColumn += 1;
+    m_currentColumn += 1;
 
-    if( currentColumn == columnCount ) {
-        currentColumn = 0;
-        currentRow += 1;
+    if( m_currentColumn == m_columnCount ) {
+        m_currentColumn = 0;
+        m_currentRow += 1;
     }
 }
 
@@ -47,7 +47,7 @@ void ClockContainer::updateClocks() {
 
     QDateTime dateTime = QDateTime::currentDateTimeUtc();
 
-    for(ClockFace * clockFace : clockList) {
+    for(ClockFace * clockFace : m_clockList) {
         clockFace->update(dateTime);
     }
 }

@@ -43,15 +43,9 @@ QString ConfigurationJson::getString(const QJsonObject & obj,  QString key, QStr
 
 int ConfigurationJson::getInt(const QJsonObject & obj, QString key, int defaultValue) {
 
-    qDebug() << "ConfigurationJson::getInt: Called.";
-
     QJsonValue value = obj[key];
 
-    qDebug() << "ConfigurationJson::getInt: Called. 1";
-
     int v = value.isDouble() ? value.toInt() : defaultValue;
-
-    qDebug() << "ConfigurationJson::getInt: intValue: " << v;
 
     return v;
 }

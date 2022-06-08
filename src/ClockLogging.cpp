@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QtMessageHandler>
 
+Q_LOGGING_CATEGORY(ocUi, "oc.ui")
+Q_LOGGING_CATEGORY(ocConfig, "oc.config")
+
 QString toString(QtMsgType type) {
 
     switch(type) {
@@ -28,10 +31,16 @@ void openClockMessageHandler(QtMsgType type, const QMessageLogContext &context, 
 
     QDateTime now = QDateTime::currentDateTime();
     QString nowText = now.toString("yyyy/MM/dd hh:mm:ss");
+    const char * category = context.category != nullptr ? context.category : "";
+    const char * file = context.file != nullptr ? context.file : "<none>";
 
-    const char * f = context.file != nullptr ? context.file : "<none>";
-
-    std::cout << nowText.toStdString() << " [" << toString(type).toStdString() << "] (" << f << ":" << context.line << ") " << msg.toStdString() << std::endl;
+    std::cout
+            << nowText.toStdString()
+            << " " << category
+            << " [" << toString(type).toStdString() << "] "
+            << "(" << file << ":" << context.line << ") "
+            << msg.toStdString()
+            << std::endl;
 
     // std::cout << nowText.toStdString() << " [" << toString(type).toStdString() << "] ( ) " << msg.toStdString() << std::endl;
 

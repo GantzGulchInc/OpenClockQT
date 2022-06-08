@@ -2,6 +2,7 @@
 #include "ClockContainer.h"
 #include "ClockFaceLed.h"
 #include "ConfigurationJson.h"
+#include "ClockLogging.h"
 
 #include <QApplication>
 #include <QWidget>
@@ -17,6 +18,53 @@
 #include <QDateTime>
 
 OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMainWindow(parent), m_config(config) {
+
+    createToolBar();
+    createStatusBar();
+    createClocks();
+    createTimer();
+
+}
+
+void OpenClockWindow::createClocks() {
+
+    m_clockContainer = new ClockContainer(this);
+    setCentralWidget(m_clockContainer);
+
+    ClockFace * clockFace = nullptr;
+    QString type{"Led"};
+    QString defaultType{"Led"};
+
+    for(QJsonObject json : m_config.clockConfigs()) {
+
+
+        ConfigurationJson::getString(json["type"], type, defaultType);
+
+        qCDebug(ocUi) << "ctor: type: " << type;
+
+        if( type == "Led" ) {
+            clockFace = new ClockFaceLed(m_clockContainer);
+        } else {
+            qWarning() << "Unknown clock face type: " << type;
+        }
+
+        if( clockFace != nullptr ) {
+
+            clockFace->configure(json);
+
+            m_clockContainer->addClockFace(clockFace);
+        }
+
+        clockFace = nullptr;
+        type = "Led";
+    }
+
+
+
+
+}
+
+void OpenClockWindow::createToolBar() {
 
     QPixmap newpix("/usr/share/icons/gnome/32x32/actions/document-new.png");
     QPixmap openpix("/usr/share/icons/gnome/32x32/actions/document-open.png");
@@ -37,60 +85,27 @@ OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMa
     QAction *quit2 = toolbar->addAction(QIcon(quitpix), "Quit Application");
     connect(quit2, &QAction::triggered, qApp, &QApplication::quit);
 
+}
 
-    clockContainer = new ClockContainer(this);
-    setCentralWidget(clockContainer);
-
-    ClockFace * clockFace = nullptr;
-    QString type{"Led"};
-    QString defaultType{"Led"};
-
-    for(QJsonObject json : m_config.clockConfigs()) {
-
-
-        ConfigurationJson::getString(json["type"], type, defaultType);
-
-        qDebug() << "OpenClockWindow::ctor: type: " << type;
-
-        if( type == "Led" ) {
-            clockFace = new ClockFaceLed(clockContainer);
-        } else {
-            qWarning() << "Unknown clock face type: " << type;
-        }
-
-        if( clockFace != nullptr ) {
-
-            qDebug() << "OpenClockWindow: add clock face: 1";
-
-            clockFace->configure(json);
-
-            qDebug() << "OpenClockWindow: add clock face: 2";
-
-            clockContainer->addClockFace(clockFace);
-        }
-
-        clockFace = nullptr;
-        type = "Led";
-    }
-
-
+void OpenClockWindow::createStatusBar() {
 
     statusBar()->showMessage("Ready");
 
-    QTimer * timer = new QTimer(this);
+}
 
-    connect(timer, &QTimer::timeout, clockContainer, &ClockContainer::updateClocks);
+void OpenClockWindow::createTimer() {
 
-    timer->start(1000);
+    m_timer = new QTimer(this);
+
+    connect(m_timer, &QTimer::timeout, m_clockContainer, &ClockContainer::updateClocks);
+
+    m_timer->start(1000);
 
 }
 
-
 void OpenClockWindow::updateClocks() {
 
-    qDebug() << "Timer event";
+    qCDebug(ocUi) << "updateClocks: Timer event";
 
-    QDateTime dateTime = QDateTime::currentDateTimeUtc();
-
-    clockContainer->updateClocks();
+    m_clockContainer->updateClocks();
 }

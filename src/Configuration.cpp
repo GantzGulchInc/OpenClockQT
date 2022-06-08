@@ -1,4 +1,5 @@
 #include "Configuration.h"
+#include "ClockLogging.h"
 
 #include <QFile>
 #include <QDebug>
@@ -14,7 +15,7 @@ bool Configuration::readFile(const QString & path, QByteArray & bytes) {
 
     QFile file;
 
-    qDebug() << "Configuration::readFile: Reading: " << path;
+    qCDebug(ocConfig) << "readFile: Reading: " << path;
 
     file.setFileName(path);
 
@@ -28,34 +29,34 @@ bool Configuration::readFile(const QString & path, QByteArray & bytes) {
 
     }
 
-    qWarning() << "Configuration::readFile: Error opening file.";
+    qWarning(ocConfig) << "readFile: Error opening file.";
 
     return false;
 }
 
 bool Configuration::parseJson(const QByteArray & data) {
 
-    document = QJsonDocument::fromJson(data, &jsonError);
+    m_document = QJsonDocument::fromJson(data, &m_jsonError);
 
-    if( jsonError.error != QJsonParseError::NoError ) {
+    if( m_jsonError.error != QJsonParseError::NoError ) {
 
-        qWarning() << "Configuration::parseJson: Error parsing json: " << jsonError.errorString() << " Offset: " << jsonError.offset;
+        qWarning(ocConfig) << "parseJson: Error parsing json: " << m_jsonError.errorString() << " Offset: " << m_jsonError.offset;
 
         return false;
     }
 
-    qDebug() << "Configuration::parseJson: Read: " << document.toJson();
+    qDebug(ocConfig) << "parseJson: Read: " << m_document.toJson();
 
-    if( document.isObject() ) {
+    if( m_document.isObject() ) {
 
-        qDebug() << "Configuration::parseJson: Document is an object.";
+        qDebug(ocConfig) << "parseJson: Document is an object.";
 
-        jsonObject = document.object();
+        m_jsonObject = m_document.object();
 
         return true;
 
     } else {
-        qDebug() << "Configuration::parseJson: Document is NOT an object.";
+        qDebug(ocConfig) << "parseJson: Document is NOT an object.";
     }
 
     return false;
@@ -69,7 +70,7 @@ bool Configuration::load() {
 
     if( !  readFile(path, data) ) {
 
-        qWarning() << "Configuration::load: read failed.";
+        qWarning(ocConfig) << "load: read failed.";
 
         return false;
 
@@ -77,30 +78,26 @@ bool Configuration::load() {
 
     if( ! parseJson(data) ) {
 
-        qWarning() << "Configuration load: parse failed.";
+        qWarning(ocConfig) << "load: parse failed.";
 
         return false;
     };
 
 
-    qDebug() << "Configuration::load: Looking for display.";
-
-    QJsonValue displayValue = jsonObject["display"];
-
-    qDebug() << "Configuration::load: Found display.";
+    QJsonValue displayValue = m_jsonObject["display"];
 
     if( displayValue.isObject() ) {
 
-        qDebug() << "Configuration::load: Found display.";
+        qDebug(ocConfig) << "load: Found display.";
 
         QJsonObject displayObject = displayValue.toObject();
 
-        configDisplay.update(displayObject);
+        m_configDisplay.update(displayObject);
     }
 
-    qDebug() << "Configuration::load: Looking for faces.";
+    qDebug(ocConfig) << "load: Looking for faces.";
 
-    QJsonValue configArray = jsonObject["clockFaces"];
+    QJsonValue configArray = m_jsonObject["clockFaces"];
 
     if( configArray.isArray() ) {
 
@@ -117,7 +114,7 @@ bool Configuration::load() {
 
     }
 
-    qDebug() << "Configuration::load: Done.";
+    qDebug(ocConfig) << "load: Done.";
 
     return true;
 }

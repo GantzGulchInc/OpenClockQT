@@ -17,14 +17,14 @@ public:
 
 private:
 
-    int columnCount;
+    int m_columnCount;
 
-    QGridLayout * layout;
+    QGridLayout * m_layout;
 
-    int currentRow;
-    int currentColumn;
+    int m_currentRow;
+    int m_currentColumn;
 
-    QVector<ClockFace *> clockList;
+    QVector<ClockFace *> m_clockList;
 
 // private slots:
 //    void updateClocks();

@@ -1,5 +1,7 @@
 #include "ClockFace.h"
 
+#include "ClockLogging.h"
+
 #include <QWidget>
 #include <QDebug>
 #include <QDateTime>
@@ -18,6 +20,6 @@ void ClockFace::update(const QDateTime & dateTime)  {
 
     Q_UNUSED(dateTime);
 
-    qDebug() << "ClockFace: update: Needs to be overridden.";
+    qCWarning(ocUi) << "update: Needs to be overridden.";
 }
 

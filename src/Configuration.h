@@ -16,11 +16,11 @@ public:
 
 
 private:
-    QJsonParseError jsonError;
-    QJsonDocument document;
-    QJsonObject jsonObject;
+    QJsonParseError m_jsonError;
+    QJsonDocument m_document;
+    QJsonObject m_jsonObject;
 
-    ConfigurationDisplay configDisplay;
+    ConfigurationDisplay m_configDisplay;
     QList<QJsonObject> m_clockConfigs;
 
     bool readFile(const QString & path, QByteArray & bytes);

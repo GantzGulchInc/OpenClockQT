@@ -11,21 +11,9 @@ ConfigurationDisplay::ConfigurationDisplay() {
 
 void ConfigurationDisplay::update(QJsonObject & json) {
 
-    qDebug() << "ConfigurationDisplay: update: called";
-
-    int cols = ConfigurationJson::getInt(json, "columns", 2);
-
-
-    qDebug() << "ConfigurationDisplay::update: cols: " << cols;
-
-    this->m_columns = cols;
-
-
-    qDebug() << "ConfigurationDisplay: update: called 1";
+    this->m_columns = ConfigurationJson::getInt(json, "columns", 2);
 
     m_background = ConfigurationJson::getColor(json, "background", QColor(0,0,0));
-
-    qDebug() << "ConfigurationDisplay: update: called 2";
 }
 
 int ConfigurationDisplay::columns() {

@@ -1,4 +1,5 @@
 #include "ClockFaceLed.h"
+#include "ClockLogging.h"
 #include "ConfigurationJson.h"
 
 #include <QDebug>
@@ -6,20 +7,9 @@
 #include <QWidget>
 #include <QFrame>
 #include <QGridLayout>
-#include <QPushButton>
-#include <QLabel>
-#include <QMenu>
-#include <QMenuBar>
-#include <QStatusBar>
-#include <QToolBar>
-#include <QIcon>
-#include <QTextEdit>
-#include <QTimer>
 #include <QDebug>
 #include <QDateTime>
-#include <QVBoxLayout>
 #include <QFont>
-#include <QJsonObject>
 
 QString ClockFaceLed::DEFAULT_TITLE{"Detroic"};
 QTimeZone ClockFaceLed::DEFAULT_TIMEZONE{"America/Detroit"};
@@ -73,7 +63,7 @@ void ClockFaceLed::configure(QJsonObject & json) {
 
         QJsonValue value = parameters.value(key);
 
-        qDebug() << "configure: key: " << key;
+        qCDebug(ocUi) << "configure: key: " << key;
 
         if( key == "background" ) {
             ConfigurationJson::getColor(value, m_background, DEFAULT_BACKGROUND);
@@ -128,7 +118,7 @@ void ClockFaceLed::configure(QJsonObject & json) {
         } else if( key == "dateShadow" ) {
             ConfigurationJson::getString(value, m_dateShadow, EMPTY_STRING);
         } else {
-            qDebug() << "ClockFaceLed::configure: Unknown configuration key: " << key;
+            qCWarning(ocUi) << "configure: Unknown configuration key: " << key;
         }
 
     }

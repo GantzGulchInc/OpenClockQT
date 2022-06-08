@@ -5,6 +5,7 @@
 
 #include <QWidget>
 #include <QMainWindow>
+#include <QTimer>
 
 
 class OpenClockWindow : public QMainWindow {
@@ -17,7 +18,14 @@ public:
 private:
 
     Configuration & m_config;
-    ClockContainer * clockContainer;
+    ClockContainer * m_clockContainer;
+    QTimer * m_timer;
+
+    void createToolBar();
+    void createStatusBar();
+    void createClocks();
+    void createTimer();
+
 
 private slots:
     void updateClocks();
