@@ -7,6 +7,8 @@
 #include <QMainWindow>
 #include <QTimer>
 
+namespace gantzgulch {
+namespace openclock {
 
 class OpenClockWindow : public QMainWindow {
 
@@ -33,3 +35,6 @@ private slots:
 };
 
 
+
+}
+}

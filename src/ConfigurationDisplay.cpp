@@ -4,6 +4,11 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
+
+namespace gantzgulch {
+namespace openclock {
+
+
 ConfigurationDisplay::ConfigurationDisplay() {
     m_columns = 2;
     m_background = QColor("#000000");
@@ -22,4 +27,8 @@ int ConfigurationDisplay::columns() {
 
 QColor ConfigurationDisplay::background() {
     return m_background;
+}
+
+
+}
 }

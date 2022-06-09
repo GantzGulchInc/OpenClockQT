@@ -3,6 +3,9 @@
 #include <QWidget>
 #include <QFont>
 
+namespace gantzgulch {
+namespace openclock {
+
 class LedDisplay : public QWidget {
 
     Q_OBJECT
@@ -36,3 +39,6 @@ private:
 };
 
 
+
+}
+}

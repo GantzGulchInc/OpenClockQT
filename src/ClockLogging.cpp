@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QtMessageHandler>
 
+namespace gantzgulch {
+namespace openclock {
+
 Q_LOGGING_CATEGORY(ocUi, "oc.ui")
 Q_LOGGING_CATEGORY(ocConfig, "oc.config")
 
@@ -47,3 +50,5 @@ void openClockMessageHandler(QtMsgType type, const QMessageLogContext &context, 
 }
 
 
+}
+}

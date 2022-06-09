@@ -6,6 +6,9 @@
 #include <QDir>
 #include <QJsonArray>
 
+namespace gantzgulch {
+namespace openclock {
+
 Configuration::Configuration() {
 
 }
@@ -123,9 +126,5 @@ QList<QJsonObject> Configuration::clockConfigs() {
     return m_clockConfigs;
 }
 
-
-
-
-
-
-
+}
+}

@@ -12,6 +12,10 @@
 #include <QGridLayout>
 
 
+namespace gantzgulch {
+namespace openclock {
+
+
 class ClockFaceLed : public ClockFace {
 
     Q_OBJECT
@@ -82,3 +86,5 @@ private:
 };
 
 
+}
+}

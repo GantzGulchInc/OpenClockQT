@@ -11,6 +11,9 @@
 #include <QDateTime>
 #include <QFont>
 
+namespace gantzgulch {
+namespace openclock {
+
 QString ClockFaceLed::DEFAULT_TITLE{"Detroic"};
 QTimeZone ClockFaceLed::DEFAULT_TIMEZONE{"America/Detroit"};
 QString ClockFaceLed::DEFAULT_FONT_FAMILY{"DSEG14 Modern"};
@@ -163,3 +166,5 @@ void ClockFaceLed::update(const QDateTime & now) {
 
 }
 
+}
+}

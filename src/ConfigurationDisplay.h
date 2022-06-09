@@ -8,6 +8,9 @@
 #include <QList>
 
 
+namespace gantzgulch {
+namespace openclock {
+
 class ConfigurationDisplay  {
 
 public:
@@ -24,3 +27,5 @@ private:
 
 };
 
+}
+}

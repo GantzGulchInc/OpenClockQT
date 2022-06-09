@@ -7,6 +7,8 @@
 #include <QColor>
 #include <QFont>
 
+namespace gantzgulch {
+namespace openclock {
 
 static QString EMPTY_STRING{""};
 
@@ -181,4 +183,7 @@ void ConfigurationJson::getTimeZone(const QJsonValue & val,  QTimeZone & timezon
     }
 
     timezoneValue = defaultValue;
+}
+
+}
 }

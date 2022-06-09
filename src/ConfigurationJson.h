@@ -7,6 +7,9 @@
 #include <QTimeZone>
 #include <QList>
 
+namespace gantzgulch {
+namespace openclock {
+
 class ConfigurationJson {
 
 public:
@@ -42,3 +45,5 @@ public:
 };
 
 
+}
+}

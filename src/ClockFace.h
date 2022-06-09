@@ -4,6 +4,9 @@
 #include <QJsonObject>
 #include <QDateTime>
 
+namespace gantzgulch {
+namespace openclock {
+
 class ClockFace : public QFrame {
 
 public:
@@ -12,4 +15,5 @@ public:
     virtual void update(const QDateTime & now);
 };
 
-
+}
+}

@@ -6,6 +6,9 @@
 #include <QDateTime>
 #include <QDebug>
 
+namespace gantzgulch {
+namespace openclock {
+
 ClockContainer::ClockContainer(QWidget * parent) : QWidget(parent) {
 
     m_layout = new QGridLayout(this);
@@ -50,4 +53,7 @@ void ClockContainer::updateClocks() {
     for(ClockFace * clockFace : m_clockList) {
         clockFace->update(dateTime);
     }
+}
+
+}
 }

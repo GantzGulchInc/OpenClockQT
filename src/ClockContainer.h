@@ -6,6 +6,9 @@
 #include <QVector>
 #include <QGridLayout>
 
+namespace gantzgulch {
+namespace openclock {
+
 class ClockContainer : public QWidget {
 
     Q_OBJECT
@@ -31,4 +34,6 @@ private:
 
 };
 
+}
 
+}

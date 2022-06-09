@@ -7,6 +7,9 @@
 #include <QJsonObject>
 #include <QList>
 
+namespace gantzgulch {
+namespace openclock {
+
 class Configuration {
 
 public:
@@ -28,3 +31,5 @@ private:
 };
 
 
+}
+}

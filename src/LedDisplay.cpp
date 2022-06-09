@@ -6,6 +6,9 @@
 #include <QPainter>
 #include <QDebug>
 
+namespace gantzgulch {
+namespace openclock {
+
 LedDisplay::LedDisplay(QWidget * parent) : QWidget(parent) {
     updateUI();
 }
@@ -67,3 +70,5 @@ void LedDisplay::update(const QString & text) {
     this->repaint();
 }
 
+}
+}

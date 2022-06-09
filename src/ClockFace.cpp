@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QDateTime>
 
+namespace gantzgulch {
+namespace openclock {
+
 ClockFace::ClockFace(QWidget * parent) : QFrame(parent) {
 
 }
@@ -23,3 +26,5 @@ void ClockFace::update(const QDateTime & dateTime)  {
     qCWarning(ocUi) << "update: Needs to be overridden.";
 }
 
+}
+}

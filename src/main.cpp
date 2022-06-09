@@ -12,15 +12,15 @@
 
 int main(int argc, char *argv[]) {
 
-    qInstallMessageHandler(openClockMessageHandler);
+    qInstallMessageHandler(gantzgulch::openclock::openClockMessageHandler);
 
-    Configuration config;
+    gantzgulch::openclock::Configuration config;
 
     config.load();
 
     QApplication app(argc, argv);
 
-    OpenClockWindow window(nullptr, config);
+    gantzgulch::openclock::OpenClockWindow window(nullptr, config);
 
     window.resize(350, 250);
     window.setWindowTitle("OpenClockQT");

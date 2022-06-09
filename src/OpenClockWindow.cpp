@@ -17,6 +17,9 @@
 #include <QDebug>
 #include <QDateTime>
 
+namespace gantzgulch {
+namespace openclock {
+
 OpenClockWindow::OpenClockWindow(QWidget * parent, Configuration & config) : QMainWindow(parent), m_config(config) {
 
     createToolBar();
@@ -108,4 +111,7 @@ void OpenClockWindow::updateClocks() {
     qCDebug(ocUi) << "updateClocks: Timer event";
 
     m_clockContainer->updateClocks();
+}
+
+}
 }
